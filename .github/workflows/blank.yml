@@ -16,6 +16,7 @@ env:
   GIT_PAT: ${{ secrets.ORG_REPOSITORY_PAT }}
   CONTAINER_USERNAME: ${{ secrets.CONTAINER_REGISTRY_USER }}
   CONTAINER_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PAT }}
+  CONTAINER_IMAGE:  ghcr.io/glb-ces-publiccloud/aws-container-terraform:latest
 
 jobs:   
   pull-latest-terraform-module-checker:
@@ -58,7 +59,7 @@ jobs:
     if: needs.pull-latest-terraform-module-checker.outputs.needs_update != 'yes'
     runs-on: [self-hosted, linux, aws, docker]
     container:
-      image: ghcr.io/glb-ces-publiccloud/aws-container-terraform:latest
+      image: ${{env.CONTAINER_IMAGE}}
       credentials:
         username: ${{ env.CONTAINER_USERNAME }}
         password: ${{ env.CONTAINER_PASSWORD }}
