@@ -1,0 +1,32 @@
+name: Container2
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  CONTAINER_IMAGE: wechuli/fib-server:latest
+  USERNAME: ${{secrets.USERNAME}}
+  PASSWORD: ${{secrets.PASSWORD}} 
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  node-docker:
+   runs-on: ubuntu-latest
+   container:
+      image: ${{env.CONTAINER_IMAGE}} # wechuli/fib-server:latest
+      credentials:
+        username: ${{env.USERNAME}}
+        password: ${{env.PASSWORD}}
+      
+   steps:
+       - name: Log the node version
+         run: |
+             node -v
+             cat /etc/os-release  
