@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  cntimage: node:14.15.0-alpine3.12
+  CONTAINER_IMAGE: wechuli/fib-server:latest
   USERNAME: ${{secrets.USERNAME}}
   PASSWORD: ${{secrets.PASSWORD}} 
 
