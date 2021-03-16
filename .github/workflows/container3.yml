@@ -22,7 +22,7 @@ jobs:
      - name: hello world
        run: echo hello world
    outputs:
-     cnt: wechuli/fib-server:latest
+     cnt: wechuli/fib-server:latestvert
    
 
   node-docker:
@@ -31,7 +31,7 @@ jobs:
    env:
      CONTAINER_IMAGE: wechuli/fib-server:latest
    container:
-      image: ${{ needs.generator.outputs.cnt }} # wechuli/fib-server:latest
+      image: wechuli/fib-server:latest
       credentials:
         username: ${{env.USERNAME}}
         password: ${{env.PASSWORD}}
@@ -41,3 +41,5 @@ jobs:
          run: |
              node -v
              cat /etc/os-release  
+       - name: Log stuff
+         run: echo ${{ needs.generator.outputs.cnt }}
