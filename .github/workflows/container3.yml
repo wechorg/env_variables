@@ -19,6 +19,8 @@ jobs:
   # This workflow contains a single job called "build"
   node-docker:
    runs-on: ubuntu-latest
+   env:
+     CONTAINER_IMAGE: wechuli/fib-server:latest
    container:
       image: $CONTAINER_IMAGE # wechuli/fib-server:latest
       credentials:
