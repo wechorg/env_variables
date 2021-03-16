@@ -22,7 +22,7 @@ jobs:
    env:
      CONTAINER_IMAGE: wechuli/fib-server:latest
    container:
-      image: $CONTAINER_IMAGE # wechuli/fib-server:latest
+      image: wechuli/fib-server:latest # $CONTAINER_IMAGE # wechuli/fib-server:latest
       credentials:
         username: ${{env.USERNAME}}
         password: ${{env.PASSWORD}}
