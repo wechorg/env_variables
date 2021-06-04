@@ -10,8 +10,8 @@ on:
   workflow_dispatch:
 
 env:
-  CONTAINER_IMAGE: wechuli/fib-server:latest
-  USERNAME: ${{secrets.USERNAME}}
+  CONTAINER_IMAGE: ghcr.io/wechorg/gs:1.0.0
+  USERNAME: ${{ github.actor }}
   PASSWORD: ${{secrets.PASSWORD}} 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -37,7 +37,7 @@ jobs:
       image: ${{needs.job1.outputs.output1}} # wechuli/fib-server:latest
       credentials:
         username: ${{env.USERNAME}}
-        password: ${{env.PASSWORD}}
+        password: ${{secrets.GITHUB_TOKEN}}
       
    steps:
        - name: Log the node version
